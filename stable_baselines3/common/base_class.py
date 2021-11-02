@@ -667,6 +667,8 @@ class BaseAlgorithm(ABC):
         if env is not None:
             # Wrap first if needed
             env = cls._wrap_env(env, data["verbose"])
+            # Hack to test models without saved dict space
+            data['observation_space'] = env.observation_space
             # Check if given env is valid
             check_for_correct_spaces(env, data["observation_space"], data["action_space"])
         else:
